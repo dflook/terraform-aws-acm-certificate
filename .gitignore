@@ -1,0 +1,9 @@
+/.idea/
+.terraform
+.terraform.tfstate
+.terraform.tfstate.backup
+.terraform.lock.hcl
+/venv/
+.pytest_cache/
+.terraform-bin-dir/
+.terraform-module/

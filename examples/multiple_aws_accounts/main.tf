@@ -19,7 +19,8 @@ data "aws_route53_zone" "example_org" {
 }
 
 module "certificate" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
 
   names = {
     "abc.example.com" : data.aws_route53_zone.example_com.zone_id
@@ -28,7 +29,8 @@ module "certificate" {
 }
 
 module "certificate_validate_second_zone" {
-  source = "github.com/dflook/terraform-aws-acm-certificate//modules/validation?ref=1.0.0"
+  source = "dflook/acm-certificate/aws//modules/validation"
+  version = "1.0.0"
 
   providers = {
     aws = aws.account-2

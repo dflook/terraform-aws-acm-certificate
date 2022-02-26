@@ -23,4 +23,4 @@ The certificate resource to validate. Should be the `certificate` output from th
 
 ## Examples
 
-See the [terraform-aws-acm-certificate](../) resource for examples.
+See the [acm-certificate](../../) module for examples.

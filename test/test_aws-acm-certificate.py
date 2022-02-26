@@ -27,7 +27,6 @@ def random_prefix() -> str:
 @pytest.mark.parametrize("aws_provider_version", ['4.2.0'])
 @pytest.mark.parametrize("terraform_version", ['1.1.6'])
 def test_validation(terraform_version, aws_provider_version):
-    pytest.skip('Not today')
     terraform_path = get_executable(terraform_version)
 
     workdir = f'.terraform-module/validation_{terraform_version}_{aws_provider_version}'
@@ -92,7 +91,6 @@ output certificate_arn {{
 @pytest.mark.parametrize("aws_provider_version", AWS_PROVIDER_VERSIONS)
 @pytest.mark.parametrize("terraform_version", TERRAFORM_VERSIONS)
 def test_secondary_validate(terraform_version, aws_provider_version):
-    pytest.skip('Not today')
     if terraform_version == '0.12.20' and aws_provider_version == '4.2.0':
         pytest.skip('Invalid version combination')
 
@@ -135,7 +133,7 @@ module certificate {{
 }}
 
 module certificate_validation {{
-  source = "../../../modules/validation_records"
+  source = "../../../modules/validation"
 
   names = {{
     "{second_zone_prefix}.{SECOND_ZONE_NAME}": "{SECOND_ZONE_ID}"
@@ -171,7 +169,6 @@ output certificate_arn {{
 @pytest.mark.parametrize("aws_provider_version", ['4.2.0'])
 @pytest.mark.parametrize("terraform_version", ['1.1.6'])
 def test_no_wait_for_validation(terraform_version, aws_provider_version):
-    pytest.skip('Not today')
     terraform_path = get_executable(terraform_version)
 
     workdir = f'.terraform-module/wait_for_validation_{terraform_version}_{aws_provider_version}'

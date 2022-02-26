@@ -41,7 +41,7 @@ Tags to add to the certificate resource.
 - Optional, Default: true
 
 When true, wait until the certificate is validated before the `arn` output is available.
-This can be set to false if some of the names in the certificate can't have their validation records automatically added by this module.
+This can be set to false if some of the names in the certificate can't have their validation records automatically added by terraform.
 
 ## Output
 
@@ -49,8 +49,8 @@ This can be set to false if some of the names in the certificate can't have thei
 
 - Type: string
 
-The ARN of the certificate. When `validate` is true, the certificate will have been issued.
-When `validate` is false, the certificate may not have been issued yet.
+The ARN of the certificate. When `wait_for_validation` is true, the certificate will have been issued.
+When `wait_for_validation` is false, the certificate may not have been issued yet.
 
 ### `common_name`
 
@@ -80,7 +80,8 @@ The `arn` output is available once the certificate is ready to use.
 
 ```hcl
 module "certificate" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
 
   names = {
     "hello.example.com" : data.aws_route53_zone.example_com.zone_id
@@ -99,7 +100,8 @@ This also explicitly sets which of the names should be the Common Name of the ce
 
 ```hcl
 module "certificate" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
 
   common_name = "hello.example.org"
   
@@ -121,7 +123,8 @@ You can use the `validation` submodule to create the validation records in the o
 
 ```hcl
 module "my_cert" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
 
   common_name = "example.org"
   
@@ -132,7 +135,8 @@ module "my_cert" {
 }
 
 module "certificate_validate_second_zone" {
-  source = "github.com/dflook/terraform-aws-acm-certificate//modules/validation?ref=1.0.0"
+  source = "dflook/acm-certificate/aws//modules/validation"
+  version = "1.0.0"
 
   providers = {
     aws = aws.account-2
@@ -158,7 +162,8 @@ Soon after the validation records have been created for the second zone, the cer
 
 ```hcl
 module "my_cert" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
   
   wait_for_validation = false
   

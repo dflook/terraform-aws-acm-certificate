@@ -5,7 +5,8 @@ data "aws_route53_zone" "example_com" {
 }
 
 module "my_cert" {
-  source = "github.com/dflook/terraform-aws-acm-certificate?ref=1.0.0"
+  source = "dflook/acm-certificate/aws"
+  version = "1.0.0"
 
   names = {
     "abc.example.com" : data.aws_route53_zone.example_com.zone_id

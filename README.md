@@ -1,9 +1,9 @@
-# aws-acm-certificate Terraform Module
+# dflook/acm-certificate/aws Terraform Module
 
 This module creates an ACM issued DNS validated certificate.
 It supports automatically creating the required validation records where the zone is hosted by Route53.
 
-The [validation submodule](modules/validation) can be used with this resource to create the validation records in a Route53 Hosted Zone in another AWS account.
+The [validation submodule](https://registry.terraform.io/modules/dflook/acm-certificate/aws/latest/submodules/validation) can be used with this resource to create the validation records in a Route53 Hosted Zone in another AWS account.
 
 This module can also be used to create certificates that include names that can't have their validation records automatically created.
 
@@ -69,7 +69,7 @@ The `domain_validation_options` attribute could also be used to create validatio
 
 ## Examples
 
-See the full [examples](examples/) for more.
+See the full [examples](https://github.com/dflook/terraform-aws-acm-certificate/tree/main/examples) for more.
 
 ### A single name
 
@@ -119,7 +119,7 @@ module "certificate" {
 This creates a certificate that includes a name that belongs to a Hosted Zone in another AWS account.
 The additional name must be in the `names` input variable with the zone id set to `null`, which prevents the module from trying to create the validation record itself.
 
-You can use the `validation` submodule to create the validation records in the other account by passing in an aws provider configured for the correct account.
+You can use the [validation submodule](https://registry.terraform.io/modules/dflook/acm-certificate/aws/latest/submodules/validation) to create the validation records in the other account by passing in an aws provider configured for the correct account.
 
 ```hcl
 module "my_cert" {

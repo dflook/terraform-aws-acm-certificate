@@ -1,4 +1,4 @@
-# aws-acm-certificate/validation_records Terraform Module
+# dflook/acm-certificate/aws//modules/validation Terraform Module
 
 This module creates ACM validation records in Route53 hosted zones.
 This should be used when the ACM certificate is in a different account to the Route53 Hosted Zone.
@@ -19,8 +19,8 @@ The hosted zone ids to create validation records in. The keys of the map are the
 - Type: aws_acm_certificate
 - Required
 
-The certificate resource to validate. Should be the `certificate` output from the aws-acm-certificate module.
+The certificate resource to validate. Should be the `certificate` output from the [dflook/acm-certificate/aws](../../) module.
 
 ## Examples
 
-See the [acm-certificate](../../) module for examples.
+See the [dflook/acm-certificate/aws](../../) module for examples.
